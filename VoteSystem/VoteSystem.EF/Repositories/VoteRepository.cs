@@ -22,7 +22,7 @@ namespace VoteSystem.EF.Repositories
         {
             using (var ctx = new VoteContext())
             {
-                return ctx.Votes.Where(u => u.user.Id == userId)
+                return ctx.Votes.Where(u => u.userId == userId)
                     .Where(vote => vote.voteStart>DateTime.Now)
                     .Where(vote => vote.voteEnd< DateTime.Now)
                     .ToList();
@@ -51,7 +51,7 @@ namespace VoteSystem.EF.Repositories
             {
                 ctx.Votes.FirstOrDefault(vote => vote.Id == vote.Id).voteStart = vote.voteStart;
                 ctx.Votes.FirstOrDefault(vote => vote.Id == vote.Id).voteEnd = vote.voteEnd;
-                ctx.Votes.FirstOrDefault(vote => vote.Id == vote.Id).choice = vote.choice;
+                ctx.Votes.FirstOrDefault(vote => vote.Id == vote.Id).choiceId = vote.choiceId;
             }
         }
     }

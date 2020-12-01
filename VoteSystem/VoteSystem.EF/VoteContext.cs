@@ -12,6 +12,10 @@ namespace VoteSystem.EF
 {
     public class VoteContext : DbContext
     {
+        public VoteContext() : base("VoteSystemDB")
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<VoteContext, VoteSystem.EF.Migrations.Configuration>());
+        }
         public DbSet<Choice> Choices { get;set; }
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Region> Regions { get; set; }
@@ -19,6 +23,7 @@ namespace VoteSystem.EF
         public DbSet<Vote> Votes { get; set; }
         public DbSet<RegionPolicy> RegionPolicies { get; set; }
         public DbSet<UserPolicy> UserPolicies { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
